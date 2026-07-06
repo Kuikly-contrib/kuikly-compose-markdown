@@ -1,4 +1,4 @@
-package com.tencent.kuiklybase.markdown.qqkuiklybase
+package com.tencent.kuiklybase.markdown.demo
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -22,14 +22,14 @@ import com.tencent.kuikly.compose.ui.text.AnnotatedString
 import com.tencent.kuikly.compose.ui.text.Placeholder
 import com.tencent.kuikly.compose.ui.unit.dp
 import com.tencent.kuikly.compose.ui.unit.sp
-import com.tencent.kuiklybase.core.compose.view.markdown.utils.MARKDOWN_TAG_REF_URL
-import com.tencent.kuiklybase.core.compose.view.markdown.utils.getUnescapedTextInNode
 import com.tencent.kuiklybase.markdown.annotator.AnnotatorSettings
 import com.tencent.kuiklybase.markdown.annotator.LocalUriHandler
 import com.tencent.kuiklybase.markdown.model.MarkdownAnnotator
 import com.tencent.kuiklybase.markdown.model.MarkdownAnnotatorConfig
 import com.tencent.kuiklybase.markdown.model.MarkdownState
 import com.tencent.kuiklybase.markdown.model.markdownAnnotatorConfig
+import com.tencent.kuiklybase.markdown.utils.MARKDOWN_TAG_REF_URL
+import com.tencent.kuiklybase.markdown.utils.getUnescapedTextInNode
 import kotlinx.coroutines.launch
 import org.intellij.markdown.MarkdownElementTypes
 import org.intellij.markdown.ast.ASTNode
@@ -64,10 +64,10 @@ class MarkdownRefAnnotator : MarkdownAnnotator {
 
                     if (linkText != null) {
                         // 按逗号分割链接文本并处理每个数字
-                        val refNumbers = linkText.split(",").map { it.trim() }
+                        val refNumbers: List<String> = linkText.split(",").map { value -> value.trim() }
 
                         // 为每个数字创建一个单独的内联内容
-                        refNumbers.forEach { number ->
+                        refNumbers.forEach { number: String ->
                             val ref = RefAnnotator(number, refNumbers).encode()
                             appendInlineContent(MARKDOWN_TAG_REF_URL, ref)
                         }
@@ -77,8 +77,8 @@ class MarkdownRefAnnotator : MarkdownAnnotator {
                     }
                 } else if (linkDestination?.startsWith("@ref:") == true) {
                     val linkText = extractLinkText(node, content)
-                    if (linkText != null && refList != null && refList?.contains(linkText) == true) {
-                        val ref = RefAnnotator(linkText, refList ?: emptyList()).encode()
+                    if (linkText != null && refList.contains(linkText)) {
+                        val ref = RefAnnotator(linkText, refList).encode()
                         appendInlineContent(MARKDOWN_TAG_REF_URL, ref)
                     }
                     true

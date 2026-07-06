@@ -8,10 +8,10 @@ import com.tencent.kuiklybase.markdown.annotator.UriHandler
 import com.tencent.kuiklybase.markdown.compose.Markdown
 import com.tencent.kuiklybase.markdown.model.MarkdownState
 import com.tencent.kuiklybase.markdown.model.markdownPadding
-import com.tencent.kuiklybase.markdown.qqkuiklybase.DemoImageLinkHandler
-import com.tencent.kuiklybase.markdown.qqkuiklybase.markdownColor
-import com.tencent.kuiklybase.markdown.qqkuiklybase.markdownTypography
-import com.tencent.kuiklybase.markdown.qqkuiklybase.rememberMarkdownRefAnnotator
+import com.tencent.kuiklybase.markdown.demo.DemoImageLinkHandler
+import com.tencent.kuiklybase.markdown.demo.markdownColor
+import com.tencent.kuiklybase.markdown.demo.markdownTypography
+import com.tencent.kuiklybase.markdown.demo.rememberMarkdownRefAnnotator
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

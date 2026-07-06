@@ -1,4 +1,4 @@
-package com.tencent.kuiklybase.markdown.qqkuiklybase
+package com.tencent.kuiklybase.markdown.demo
 
 import com.tencent.kuiklybase.markdown.model.ImageData
 import com.tencent.kuiklybase.markdown.model.ImageLinkHandlerImpl

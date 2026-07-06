@@ -2,13 +2,14 @@ package com.tencent.kuiklybase.markdown.ui
 
 import android.app.Application
 import android.view.ViewGroup
-import com.tencent.kuikly.core.render.android.expand.KuiklyRenderViewDelegator
-import com.tencent.kuikly.core.render.android.expand.KuiklyRenderViewDelegatorDelegate
+import com.tencent.kuikly.core.render.android.IKuiklyRenderExport
+import com.tencent.kuikly.core.render.android.expand.KuiklyRenderViewBaseDelegator
+import com.tencent.kuikly.core.render.android.expand.KuiklyRenderViewBaseDelegatorDelegate
 import com.tencent.kuikly.core.render.android.export.KuiklyRenderBaseModule
 
-class AndroidComposePageDelegate : KuiklyRenderViewDelegatorDelegate, IComposePageDelegate {
+class AndroidComposePageDelegate : KuiklyRenderViewBaseDelegatorDelegate, IComposePageDelegate {
 
-    private val kuiklyRenderViewDelegator = KuiklyRenderViewDelegator(this)
+    private val kuiklyRenderViewDelegator = KuiklyRenderViewBaseDelegator(this)
 
     private var onFirstFrame: (() -> Unit)? = null
 
@@ -50,5 +51,17 @@ class AndroidComposePageDelegate : KuiklyRenderViewDelegatorDelegate, IComposePa
 
     override fun onDispatchBackEvent(): Boolean {
         return kuiklyRenderViewDelegator.onBackPressed()
+    }
+
+    override fun registerExternalModule(kuiklyRenderExport: IKuiklyRenderExport) {
+        exportModules.forEach { (name, module) ->
+            kuiklyRenderExport.moduleExport(name) {
+                module
+            }
+        }
+    }
+
+    override fun onKuiklyRenderContentViewCreated() {
+        onFirstFrame?.invoke()
     }
 }

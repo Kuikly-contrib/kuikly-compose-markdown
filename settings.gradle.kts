@@ -35,6 +35,6 @@ gradle.allprojects {
 }
 
 rootProject.name = "markdown-compose-ui"
-//include(":app")
-//include(":demo")
+include(":app")
+include(":demo")
 include(":markdown")

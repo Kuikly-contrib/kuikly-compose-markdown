@@ -1,4 +1,4 @@
-package com.tencent.kuiklybase.markdown.qqkuiklybase
+package com.tencent.kuiklybase.markdown.demo
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
