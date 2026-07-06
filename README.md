@@ -56,10 +56,10 @@ repositories {
 // build.gradle.kts
 dependencies {
     // Android / iOS / macOS / JS
-    implementation("com.tencent.kuiklybase:markdown:0.4.0")
+    implementation("com.tencent.kuiklybase:markdown:0.4.1")
     
     // HarmonyOS
-    implementation("com.tencent.kuiklybase:markdown:0.3.0-ohos")
+    implementation("com.tencent.kuiklybase:markdown:0.4.1-ohos")
 }
 ```
 
